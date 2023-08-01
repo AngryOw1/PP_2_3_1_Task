@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search result</title>
+  <style>
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th {
+      border: 1px solid #000000;
+      text-align: left;
+      padding: 8px;
+    }
+
+    td {
+      border: 1px solid #000000;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-surname: #b2afaf;
+    }
+
+  </style>
+</head>
+<body>
+
+
+<table>
+  <thead>
+  <tr>
+    <th>User name</th>
+    <th>User surname</th>
+    <th>User age</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="usr : ${users4display}">
+    <td th:text="${usr.getName()}"></td>
+    <td th:text="${usr.getSurname()}"></td>
+    <td th:text="${usr.getAge()}"></td>
+  </tr>
+  </tbody>
+</table>
+<br/>
+<button type="button" >
+  <a th:href="@{/{id}/edit(id=${users4display.getId()})}">Edit</a>
+</button>
+<br/>
+<br/>
+<form th:method="DELETE" th:action="@{/{id}(id=${users4display.getId()})}">
+  <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>
